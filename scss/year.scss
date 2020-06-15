@@ -3,10 +3,10 @@
 @import 'mixins&functions';
 
 .year-calendar {
-    @include flex(center);
+    @include flex(flex-start, center,column);
 
     .year-nav {
-        margin-top: 10px;
+        margin: 10px 0 10px 0;
         width: 225px;
         @include flex(space-between, center);
 
@@ -23,4 +23,66 @@
             width: 35px;
         }
     }
+
+    .months-of-the-year {
+        width: 92%;
+        @include flex(space-between);
+
+        .month-of-year {
+            width: 300px;
+            padding: 2px 10px 5px 10px;
+            // height: 180px;
+            border-radius: 25px;
+            box-shadow: 0 0 6px rgba($black, $alpha: 0.16);
+
+            .month-name {
+                text-align: center;
+                font-size: 15px;
+            }
+
+            .weekdays {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                
+                .wday {
+                    margin: 0 auto;
+                    width: 30px;
+                    @include flex(center, center);
+                    font: {
+                        weight: weight(light);
+                        size: 15px;
+                    }
+                    color: $wkds;
+                }
+            }
+
+            .dates {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                
+                .date {
+                    margin: 0 auto;
+                    height: 30px;
+                    width: 30px;
+                    @include flex(center, center);
+                    border-radius: 50%;
+                    font: {
+                        weight: weight(light);
+                        size: 15px;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+.curr-date {
+    background: $primColor;
+    color: $white;
+}
+
+.curr-wday {
+    color: $primColor !important;
 }

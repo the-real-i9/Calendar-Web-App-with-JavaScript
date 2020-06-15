@@ -13,8 +13,8 @@
 .header {
   width: 100%;
   height: 60px;
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,7 +28,7 @@
 }
 
 .header .intro-logo {
-  margin-left: 5%;
+  margin-left: 3%;
   font-size: 30px;
   font-weight: 300;
 }

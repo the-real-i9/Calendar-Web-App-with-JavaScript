@@ -14,13 +14,20 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .year-calendar .year-nav {
-  margin-top: 10px;
+  margin: 10px 0 10px 0;
   width: 225px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -44,5 +51,86 @@
 
 .year-calendar .year-nav img {
   width: 35px;
+}
+
+.year-calendar .months-of-the-year {
+  width: 92%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.year-calendar .months-of-the-year .month-of-year {
+  width: 300px;
+  padding: 2px 10px 5px 10px;
+  border-radius: 25px;
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+}
+
+.year-calendar .months-of-the-year .month-of-year .month-name {
+  text-align: center;
+  font-size: 15px;
+}
+
+.year-calendar .months-of-the-year .month-of-year .weekdays {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+}
+
+.year-calendar .months-of-the-year .month-of-year .weekdays .wday {
+  margin: 0 auto;
+  width: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 300;
+  font-size: 15px;
+  color: #aeaeae;
+}
+
+.year-calendar .months-of-the-year .month-of-year .dates {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+}
+
+.year-calendar .months-of-the-year .month-of-year .dates .date {
+  margin: 0 auto;
+  height: 30px;
+  width: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.curr-date {
+  background: #1a73e8;
+  color: #fff;
+}
+
+.curr-wday {
+  color: #1a73e8 !important;
 }
 /*# sourceMappingURL=year.css.map */
