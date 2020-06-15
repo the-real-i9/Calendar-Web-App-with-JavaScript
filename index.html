@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/fontawesome_all.min.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/year.css">
+    <link rel="stylesheet" href="./css/month.css">
 </head>
 <body>
     <div class="container">
@@ -17,7 +18,7 @@
                 <div class="sb" id="year-switch"><i class='fas fa-calendar-alt fa-fw'></i>Year</div>
             </div>
         </div>
-        <div class="year-calendar">
+        <div class="year-calendar" style="display: none;">
             <div class="year-nav">
                 <!-- <i class="fas fa-arrow-circle-left" id='prev-year'></i> -->
                 <img src="./img/left-arrow-btn.png" alt="" id='prev-year'>
@@ -84,6 +85,24 @@
                 <div class="month-of-year">
                     
                 </div> -->
+            </div>
+        </div>
+        <div class="month-calendar">
+            <div class="month-nav">
+                <img src="./img/left-arrow-btn.png" alt="" id='prev-month'>
+                <div class="month-year">June 20<span id='relv'>20</span></div>
+                <img src="./img/right-arrow-btn.png" alt="" id='next-month'>
+            </div>
+            <div class="month-box">
+                <div class="mweekdays">
+                    <span class='mwday' id="mwday-0">Sun</span>
+                    <span class='mwday curr-mwday' id="mwday-1">Mon</span>
+                    <span class='mwday' id="mwday-2">Tue</span>
+                    <span class='mwday' id="mwday-3">Wed</span>
+                    <span class='mwday' id="mwday-4">Thu</span>
+                    <span class='mwday' id="mwday-5">Fri</span>
+                    <span class='mwday' id="mwday-6">Sat</span>
+                </div>
             </div>
         </div>
     </div>

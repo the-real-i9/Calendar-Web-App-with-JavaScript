@@ -9,4 +9,77 @@
 .sb, .year-nav img {
   cursor: pointer;
 }
+
+.month-calendar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.month-calendar .month-nav {
+  margin: 10px 0 10px 0;
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.month-calendar .month-nav .month-year {
+  font-size: 33px;
+  font-weight: 500;
+}
+
+.month-calendar .month-nav .month-year #relv {
+  color: #1a73e8;
+}
+
+.month-calendar .month-nav img {
+  width: 35px;
+}
+
+.month-calendar .month-box {
+  width: 92%;
+  height: 400px;
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+  border-radius: 70px;
+}
+
+.month-calendar .month-box .mweekdays {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  width: 90%;
+  margin: 20px auto 0 auto;
+}
+
+.month-calendar .month-box .mweekdays .mwday {
+  margin: 0 auto;
+  border: 2px solid #1a73e8;
+  padding: 1px 55px;
+  border-radius: 35px;
+  font-weight: 400;
+}
+
+.curr-mwday {
+  background: #1a73e8;
+  color: #fff;
+}
 /*# sourceMappingURL=month.css.map */

@@ -3,7 +3,7 @@
 @import 'mixins&functions';
 
 .year-calendar {
-    @include flex(flex-start, center,column);
+    @include flex(flex-start, center, column);
 
     .year-nav {
         margin: 10px 0 10px 0;

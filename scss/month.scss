@@ -2,3 +2,52 @@
 @import 'resets';
 @import 'mixins&functions';
 
+.month-calendar {
+    @include flex(flex-start, center, column);
+
+    .month-nav {
+        margin: 10px 0 10px 0;
+        width: 300px;
+        @include flex(space-between, center);
+
+        .month-year {
+            font: {
+                size: 33px;
+                weight: weight(medium);
+            }
+            #relv {
+                color: $primColor;
+            }
+        }
+        img {
+            width: 35px;
+        }
+    }
+
+    .month-box {
+        width: 92%;
+        height: 400px;
+        box-shadow: 0 0 6px rgba($black, $alpha: 0.16);
+        border-radius: 70px;
+
+        .mweekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            width: 90%;
+            margin: 20px auto 0 auto;
+
+            .mwday {
+                margin: 0 auto;
+                border: 2px solid $primColor;
+                padding: 1px 55px;
+                border-radius: 35px;
+                font-weight: weight(normal);
+            }
+        }
+    }
+}
+
+.curr-mwday {
+    background: $primColor;
+    color: $white;
+}
