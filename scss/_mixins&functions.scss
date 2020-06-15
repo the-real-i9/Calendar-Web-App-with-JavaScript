@@ -1,0 +1,10 @@
+@function weight($key) {
+    @return map-get($key);
+};
+
+@mixin flex($jc:null,$ai:null,$dir:null) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $dir;
+}

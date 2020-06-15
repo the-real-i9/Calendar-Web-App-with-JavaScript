@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AECA,AAAA,CAAC,CAAC;EACE,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,UAAU;CACzB",
+    "sources": [
+        "../scss/header.scss",
+        "../scss/_variables.scss",
+        "../scss/_resets.scss",
+        "../scss/_mixins&functions.scss"
+    ],
+    "names": [],
+    "file": "header.css"
+}
