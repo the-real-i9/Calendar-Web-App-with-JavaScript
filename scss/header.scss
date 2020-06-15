@@ -23,7 +23,7 @@
         margin-right: 15%;
         @include flex();
 
-        div {
+        .sb {
             font-weight: weight(light);
             font-size: 17px;
             width: 120px;

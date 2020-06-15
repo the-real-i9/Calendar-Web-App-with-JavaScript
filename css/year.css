@@ -1,1 +1,48 @@
-/* No CSS *//*# sourceMappingURL=year.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Poppins;
+}
+
+.sb, .year-nav img {
+  cursor: pointer;
+}
+
+.year-calendar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.year-calendar .year-nav {
+  margin-top: 10px;
+  width: 225px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.year-calendar .year-nav .year {
+  font-size: 33px;
+  font-weight: 500;
+}
+
+.year-calendar .year-nav .year #relv {
+  color: #1a73e8;
+}
+
+.year-calendar .year-nav img {
+  width: 35px;
+}
+/*# sourceMappingURL=year.css.map */

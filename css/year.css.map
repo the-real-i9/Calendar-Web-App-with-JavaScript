@@ -1,8 +1,11 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AECA,AAAA,CAAC,CAAC;EACE,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,UAAU;EACtB,WAAW,EAAE,OAAO;CACvB;;AAED,AAAA,GAAG,EAAE,SAAS,CAAC,GAAG,CAAC;EACf,MAAM,EAAE,OAAO;CAClB;;AFND,AAAA,cAAc,CAAC;EGCX,OAAO,EAAE,IAAI;EACb,eAAe,EHDD,MAAM;CAoBvB;;AArBD,AAGI,cAHU,CAGV,SAAS,CAAC;EACN,UAAU,EAAE,IAAI;EAChB,KAAK,EAAE,KAAK;EGJhB,OAAO,EAAE,IAAI;EACb,eAAe,EHIG,aAAa;EGH/B,WAAW,EHGsB,MAAM;CActC;;AApBL,AAQQ,cARM,CAGV,SAAS,CAKL,KAAK,CAAC;EAEE,SAAI,EAAE,IAAI;EACV,WAAM,ECLV,GAAG;CDUN;;AAhBT,AAaY,cAbE,CAGV,SAAS,CAKL,KAAK,CAKD,KAAK,CAAC;EACF,KAAK,EClBT,OAAO;CDmBN;;AAfb,AAiBQ,cAjBM,CAGV,SAAS,CAcL,GAAG,CAAC;EACA,KAAK,EAAE,IAAI;CACd",
     "sources": [
-        "../scss/year.scss"
+        "../scss/year.scss",
+        "../scss/_variables.scss",
+        "../scss/_resets.scss",
+        "../scss/_mixins&functions.scss"
     ],
     "names": [],
     "file": "year.css"

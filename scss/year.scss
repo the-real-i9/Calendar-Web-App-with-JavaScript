@@ -1,0 +1,26 @@
+@import 'variables';
+@import 'resets';
+@import 'mixins&functions';
+
+.year-calendar {
+    @include flex(center);
+
+    .year-nav {
+        margin-top: 10px;
+        width: 225px;
+        @include flex(space-between, center);
+
+        .year {
+            font: {
+                size: 33px;
+                weight: weight(medium);
+            }
+            #relv {
+                color: $primColor;
+            }
+        }
+        img {
+            width: 35px;
+        }
+    }
+}

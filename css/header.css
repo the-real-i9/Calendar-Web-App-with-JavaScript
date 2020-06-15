@@ -6,6 +6,10 @@
   font-family: Poppins;
 }
 
+.sb, .year-nav img {
+  cursor: pointer;
+}
+
 .header {
   width: 100%;
   height: 60px;
@@ -40,7 +44,7 @@
   display: flex;
 }
 
-.header .switch-btns div {
+.header .switch-btns .sb {
   font-weight: 300;
   font-size: 17px;
   width: 120px;
@@ -57,7 +61,7 @@
   border-radius: 30px;
 }
 
-.header .switch-btns div i {
+.header .switch-btns .sb i {
   color: #1a73e8;
 }
 
