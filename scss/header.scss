@@ -2,3 +2,42 @@
 @import 'resets';
 @import 'mixins&functions';
 
+.header {
+    width: 100%;
+    height: 60px;
+    box-shadow: 0 3px 6px rgba($black, $alpha: 0.1);
+    @include flex(space-between, center);
+    background: $white;
+
+    .intro-logo {
+        margin-left: 5%;
+        font-size: 30px;
+        font-weight: weight(light);
+
+        i {
+            color: $primColor;
+        }
+    }
+    
+    .switch-btns {
+        margin-right: 15%;
+        @include flex();
+
+        div {
+            font-weight: weight(light);
+            font-size: 17px;
+            width: 120px;
+            height: 50px;
+            @include flex(center, center);
+            border-radius: 30px;
+
+            i {
+                color: $primColor;
+            }
+        }
+
+        #year-switch {
+            background: $sopen;
+        }
+    }
+}

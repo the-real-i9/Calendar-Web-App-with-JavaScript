@@ -1,5 +1,5 @@
 @function weight($key) {
-    @return map-get($key);
+    @return map-get($fontWeights, $key);
 };
 
 @mixin flex($jc:null,$ai:null,$dir:null) {
