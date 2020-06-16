@@ -55,10 +55,10 @@
 
 .month-calendar .month-box {
   width: 92%;
-  height: 400px;
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
           box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
   border-radius: 70px;
+  overflow: hidden;
 }
 
 .month-calendar .month-box .mweekdays {
@@ -76,6 +76,13 @@
   padding: 1px 55px;
   border-radius: 35px;
   font-weight: 400;
+}
+
+.month-calendar .month-box .dates-box {
+  width: 100%;
+  background: #E1ECFC;
+  height: 350px;
+  margin-top: 15px;
 }
 
 .curr-mwday {

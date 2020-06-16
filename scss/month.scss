@@ -26,9 +26,9 @@
 
     .month-box {
         width: 92%;
-        height: 400px;
         box-shadow: 0 0 6px rgba($black, $alpha: 0.16);
         border-radius: 70px;
+        overflow: hidden;
 
         .mweekdays {
             display: grid;
@@ -43,6 +43,13 @@
                 border-radius: 35px;
                 font-weight: weight(normal);
             }
+        }
+
+        .dates-box {
+            width: 100%;
+            background: $dates-bg;
+            height: 350px;
+            margin-top: 15px;
         }
     }
 }
