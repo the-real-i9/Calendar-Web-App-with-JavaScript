@@ -41,6 +41,7 @@ const switchController = ((UICtrl) => {
     const setupEventListeners = () => {
         const event = (elem, ev, value) => select(elem).addEventListener(ev, value);
 
+        // Switch between month and year
         event(DOM.monthSwitch, 'click', switchCal);
         event(DOM.yearSwitch, 'click', switchCal);
     };
