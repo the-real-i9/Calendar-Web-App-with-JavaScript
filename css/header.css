@@ -6,7 +6,7 @@
   font-family: Poppins;
 }
 
-.sb, .year-nav img, .month-nav img, .date {
+.sb, .year-nav img, .month-nav img, .mdate {
   cursor: pointer;
 }
 
@@ -65,7 +65,7 @@
   color: #1a73e8;
 }
 
-.header .switch-btns #year-switch {
+.switch-on {
   background: #f9f9f9;
 }
 /*# sourceMappingURL=header.css.map */

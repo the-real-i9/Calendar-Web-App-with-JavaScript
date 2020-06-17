@@ -6,7 +6,7 @@
   font-family: Poppins;
 }
 
-.sb, .year-nav img, .month-nav img, .date {
+.sb, .year-nav img, .month-nav img, .mdate {
   cursor: pointer;
 }
 
@@ -24,6 +24,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  display: none;
 }
 
 .month-calendar .month-nav {
@@ -107,7 +108,7 @@
   padding: 5px 0 0 13px;
 }
 
-.month-calendar .month-box .dates-box .dates-grid .date:hover {
+.month-calendar .month-box .dates-box .dates-grid .mdate:hover {
   background: #B4D1F8;
   border-radius: 7px;
 }

@@ -4,6 +4,7 @@
 
 .month-calendar {
     @include flex(flex-start, center, column);
+    display: none;
 
     .month-nav {
         margin: 5px 0;
@@ -65,7 +66,7 @@
                     font-size: 20px;
                     padding: 5px 0 0 13px;
                 }
-                .date {
+                .mdate {
                     &:hover {
                         background: $date-hover;
                         border-radius: 7px;
