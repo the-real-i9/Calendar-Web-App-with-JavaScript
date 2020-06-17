@@ -60,13 +60,6 @@ const yearUIController = (() => {
         offset(elem, week, count, num);
     };
 
-    const supply = (count, compareTo, elem, html) => {
-        selector(elem).insertAdjacentHTML('beforeend', html);
-        count++;
-        if (count > compareTo) return;
-        supply(count, compareTo, elem, html);
-    };
-
     const insertHtml = (elem, where, html) => {
         selector(elem).insertAdjacentHTML(where, html);
     };
