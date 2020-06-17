@@ -6,7 +6,7 @@
     @include flex(flex-start, center, column);
 
     .month-nav {
-        margin: 10px 0 10px 0;
+        margin: 5px 0;
         width: 300px;
         @include flex(space-between, center);
 
@@ -34,12 +34,13 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             width: 90%;
-            margin: 20px auto 0 auto;
+            margin: 23px auto 17px auto;
 
             .mwday {
+                @include flex(center);
                 margin: 0 auto;
                 border: 2px solid $primColor;
-                padding: 1px 55px;
+                width: 145px;
                 border-radius: 35px;
                 font-weight: weight(normal);
             }
@@ -48,8 +49,29 @@
         .dates-box {
             width: 100%;
             background: $dates-bg;
-            height: 350px;
+            // height: 350px;
             margin-top: 15px;
+            
+            .dates-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                width: 90%;
+                margin: 0 auto;
+
+                span {
+                    margin: 0 auto;
+                    height: 75px;
+                    width: 145px;
+                    font-size: 20px;
+                    padding: 5px 0 0 13px;
+                }
+                .date {
+                    &:hover {
+                        background: $date-hover;
+                        border-radius: 7px;
+                    }
+                }
+            }
         }
     }
 }
@@ -57,4 +79,38 @@
 .curr-mwday {
     background: $primColor;
     color: $white;
+}
+
+.curr-mdate {
+    background: $white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: inset 0 2px 0 $primColor;
+    color: $primColor;
+    position: relative;
+
+    #curr-time {
+        position: absolute; 
+        left: 0;
+        top: 35%;
+        font: {
+            size: 13px;
+            weight: weight(medium);
+        }
+        color: $curr-date;
+    }
+}
+
+.event {
+    position: relative;
+
+    .event-name {
+        position: absolute; 
+        left: 0;
+        top: 35%;
+        font: {
+            size: 13px !important;
+            weight: weight(medium);
+        }
+        color: $curr-date;
+    }
 }

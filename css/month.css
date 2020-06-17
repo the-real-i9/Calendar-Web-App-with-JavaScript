@@ -6,7 +6,7 @@
   font-family: Poppins;
 }
 
-.sb, .year-nav img {
+.sb, .year-nav img, .month-nav img, .date {
   cursor: pointer;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .month-calendar .month-nav {
-  margin: 10px 0 10px 0;
+  margin: 5px 0;
   width: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -67,13 +67,19 @@
   -ms-grid-columns: (1fr)[7];
       grid-template-columns: repeat(7, 1fr);
   width: 90%;
-  margin: 20px auto 0 auto;
+  margin: 23px auto 17px auto;
 }
 
 .month-calendar .month-box .mweekdays .mwday {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 0 auto;
   border: 2px solid #1a73e8;
-  padding: 1px 55px;
+  width: 145px;
   border-radius: 35px;
   font-weight: 400;
 }
@@ -81,12 +87,64 @@
 .month-calendar .month-box .dates-box {
   width: 100%;
   background: #E1ECFC;
-  height: 350px;
   margin-top: 15px;
+}
+
+.month-calendar .month-box .dates-box .dates-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  width: 90%;
+  margin: 0 auto;
+}
+
+.month-calendar .month-box .dates-box .dates-grid span {
+  margin: 0 auto;
+  height: 75px;
+  width: 145px;
+  font-size: 20px;
+  padding: 5px 0 0 13px;
+}
+
+.month-calendar .month-box .dates-box .dates-grid .date:hover {
+  background: #B4D1F8;
+  border-radius: 7px;
 }
 
 .curr-mwday {
   background: #1a73e8;
   color: #fff;
+}
+
+.curr-mdate {
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  -webkit-box-shadow: inset 0 2px 0 #1a73e8;
+          box-shadow: inset 0 2px 0 #1a73e8;
+  color: #1a73e8;
+  position: relative;
+}
+
+.curr-mdate #curr-time {
+  position: absolute;
+  left: 0;
+  top: 35%;
+  font-size: 13px;
+  font-weight: 500;
+  color: #787676;
+}
+
+.event {
+  position: relative;
+}
+
+.event .event-name {
+  position: absolute;
+  left: 0;
+  top: 35%;
+  font-size: 13px !important;
+  font-weight: 500;
+  color: #787676;
 }
 /*# sourceMappingURL=month.css.map */
