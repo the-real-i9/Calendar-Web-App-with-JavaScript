@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 const yearCalController = (() => {
     const d = new Date();
-    const calendarInfo = ({ whichYear = d.getFullYear(), whichMonth }) => {
+    const calendarInfo = ({ whichYear = d.getFullYear(), whichMonth = d.getMonth() }) => {
         d.setFullYear(whichYear, whichMonth);
 
         const drefFrom = new Date(d.getFullYear(), d.getMonth());
@@ -14,11 +14,13 @@ const yearCalController = (() => {
         const daysInMonth = (drefTo - drefFrom) / 1000 / 60 / 60 / 24;
         const weekStart = drefFrom.getDay();
         const weekEnd = 7 - drefTo.getDay();
-        // const date = d.getDate();
-        // const currWeek = d.getDay();
+        const currDate = new Date().getDate();
+        const currWeek = new Date().getDay();
+        const currMonth = new Date().getMonth();
+        const currYear = new Date().getFullYear().toString();
 
         return {
-            year, month, daysInMonth, weekStart, weekEnd,
+            year, month, daysInMonth, weekStart, weekEnd, currDate, currWeek, currMonth, currYear,
         };
     };
 
@@ -68,8 +70,11 @@ const yearUIController = (() => {
     const insertHtml = (elem, where, html) => {
         selector(elem).insertAdjacentHTML(where, html);
     };
+
     return {
-        preset({ currYear }) {
+        preset({
+            currDate, currWeek, currMonth, currYear,
+        }) {
             let monthCountStart = 0;
             const monthCountEnd = 11;
             const [fh, sh] = [currYear.slice(0, 2), currYear.slice(2, currYear.length)];
@@ -88,17 +93,14 @@ const yearUIController = (() => {
                 let dateCount = 1;
                 const weekText = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-                const supply = (count, compareTo, elem, html) => {
-                    selector(elem).insertAdjacentHTML('beforeend', html);
-                    count++;
-                    if (count > compareTo) return;
-                    supply(count, compareTo, elem);
-                };
-
+                // insert month to months container
                 insertHtml(DOMStrings.allMonthsCont, 'beforeend', `<div class="month-of-year" id='moy-${monthCountStart}'></div>`);
+                // insert the month name
                 insertHtml(`#moy-${monthCountStart}`, 'beforeend', `<div class='month-name'>${month}</div>`);
+                // insert weeks container
                 insertHtml(`#moy-${monthCountStart}`, 'beforeend', `<div class="weekdays" id='wds-${monthCountStart}'>`);
 
+                // Supply the weeks into weeks container
                 const supplyWeeks = (count, compareTo, elem) => {
                     selector(elem).insertAdjacentHTML('beforeend', `<span class='wday' id="wday-${count}">${weekText[count]}</span>`);
                     count++;
@@ -107,11 +109,14 @@ const yearUIController = (() => {
                 };
                 supplyWeeks(weekCountStart, weekCountEnd, `#wds-${monthCountStart}`);
 
+                // insert dates container
                 insertHtml(`#moy-${monthCountStart}`, 'beforeend', `<div class="dates" id='dates-${monthCountStart}'>`);
 
+                // Add required empty cels to the start
                 const offsetStart = offset;
                 offsetStart(`#dates-${monthCountStart}`, weekStart, countOffsetStart, noOffsetStart);
 
+                // supply the dates for the month
                 const supplyDates = (count, compareTo, elem) => {
                     selector(elem).insertAdjacentHTML('beforeend', `<span class="date" id="date-${count}">${count}</span>`);
                     count++;
@@ -120,13 +125,19 @@ const yearUIController = (() => {
                 };
                 supplyDates(dateCount, daysInMonth, `#dates-${monthCountStart}`);
 
+                // // Add required empty cels to the end
                 const offsetEnd = offset;
                 offsetEnd(`#dates-${monthCountStart}`, weekEnd, countOffsetEnd, noOffsetEnd);
 
+                // Increment to and call the function agin to serve subsequent months
                 monthCountStart++;
                 serveMonth(yearAppController.serveMonth({ monthNum: monthCountStart }));
             };
             serveMonth(yearAppController.serveMonth({ monthNum: monthCountStart }));
+
+            classAction(`#moy-${currMonth} #date-${currDate}`, 'add', 'curr-date');
+            classAction(`#moy-${currMonth} #wday-${currWeek}`, 'add', 'curr-wday');
+
         },
 
         getDOMStrings: () => DOMStrings,
@@ -145,7 +156,7 @@ const yearAppController = ((ycCtrl, UICtrl) => {
 
     return {
         init() {
-            UICtrl.preset({ currYear: new Date().getFullYear().toString() });
+            UICtrl.preset(ycCtrl.calendarInfo());
             setupEventListeners();
         },
         serveMonth: ({ year, monthNum }) => serveMonth({ year, monthNum }),

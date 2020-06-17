@@ -25,6 +25,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin-bottom: 20px;
+  margin-top: 60px;
 }
 
 .year-calendar .year-nav {

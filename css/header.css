@@ -10,6 +10,15 @@
   cursor: pointer;
 }
 
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #1a73e8;
+  border-radius: 20px 0 0 20px;
+}
+
 .header {
   width: 100%;
   height: 60px;
@@ -25,6 +34,8 @@
       -ms-flex-align: center;
           align-items: center;
   background: #fff;
+  position: fixed;
+  top: 0;
 }
 
 .header .intro-logo {

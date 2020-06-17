@@ -5,6 +5,7 @@
 .month-calendar {
     @include flex(flex-start, center, column);
     display: none;
+    margin-top: 60px;
 
     .month-nav {
         margin: 5px 0;

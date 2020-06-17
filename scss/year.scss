@@ -5,6 +5,7 @@
 .year-calendar {
     @include flex(flex-start, center, column);
     margin-bottom: 20px;
+    margin-top: 60px;
 
     .year-nav {
         margin: 10px 0 10px 0;

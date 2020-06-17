@@ -25,6 +25,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   display: none;
+  margin-top: 60px;
 }
 
 .month-calendar .month-nav {
