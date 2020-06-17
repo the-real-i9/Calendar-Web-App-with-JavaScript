@@ -34,6 +34,7 @@
             // height: 180px;
             border-radius: 25px;
             box-shadow: 0 0 6px rgba($black, $alpha: 0.16);
+            transition: transform .5s 1s ease-in;
 
             .month-name {
                 text-align: center;

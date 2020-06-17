@@ -60,6 +60,10 @@
           box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
   border-radius: 70px;
   overflow: hidden;
+  -webkit-transition: -webkit-transform .5s 1s ease-in;
+  transition: -webkit-transform .5s 1s ease-in;
+  transition: transform .5s 1s ease-in;
+  transition: transform .5s 1s ease-in, -webkit-transform .5s 1s ease-in;
 }
 
 .month-calendar .month-box .mweekdays {

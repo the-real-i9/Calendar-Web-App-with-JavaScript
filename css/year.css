@@ -69,6 +69,10 @@
   border-radius: 25px;
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
           box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+  -webkit-transition: -webkit-transform .5s 1s ease-in;
+  transition: -webkit-transform .5s 1s ease-in;
+  transition: transform .5s 1s ease-in;
+  transition: transform .5s 1s ease-in, -webkit-transform .5s 1s ease-in;
 }
 
 .year-calendar .months-of-the-year .month-of-year .month-name {

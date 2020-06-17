@@ -30,6 +30,7 @@
         box-shadow: 0 0 6px rgba($black, $alpha: 0.16);
         border-radius: 70px;
         overflow: hidden;
+        transition: transform .5s 1s ease-in;
 
         .mweekdays {
             display: grid;
