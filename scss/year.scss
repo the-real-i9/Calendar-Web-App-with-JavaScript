@@ -4,6 +4,7 @@
 
 .year-calendar {
     @include flex(flex-start, center, column);
+    margin-bottom: 20px;
 
     .year-nav {
         margin: 10px 0 10px 0;
@@ -25,11 +26,14 @@
     }
 
     .months-of-the-year {
-        width: 92%;
-        @include flex(space-between);
+        width: 87%;
+        display: grid;
+        margin: 0 auto;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 20px;
 
         .month-of-year {
-            width: 300px;
+            width: 275px;
             padding: 2px 10px 5px 10px;
             // height: 180px;
             border-radius: 25px;

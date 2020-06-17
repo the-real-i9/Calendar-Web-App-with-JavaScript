@@ -24,6 +24,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .year-calendar .year-nav {
@@ -54,17 +55,17 @@
 }
 
 .year-calendar .months-of-the-year {
-  width: 92%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  width: 87%;
+  display: -ms-grid;
+  display: grid;
+  margin: 0 auto;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  row-gap: 20px;
 }
 
 .year-calendar .months-of-the-year .month-of-year {
-  width: 300px;
+  width: 275px;
   padding: 2px 10px 5px 10px;
   border-radius: 25px;
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);

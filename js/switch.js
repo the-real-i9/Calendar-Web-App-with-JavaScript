@@ -22,11 +22,11 @@ const switchUIController = (() => {
             classAction(DOMStrings.yearSwitch, 'add', 'switch-on');
             setStyle(DOMStrings.yearCalendar, 'display', 'flex');
             setStyle(DOMStrings.monthCalendar, 'display', 'none');
-            setStyle(DOMStrings.myCalBox, 'transform', 'translateY(0)');
+            // setStyle(DOMStrings.myCalBox, 'transform', 'translateY(0)');
         },
 
         switchCal({ on, off }) {
-            const [{ switchBtnOn, calendarOn, animOn }, { switchBtnOff, calendarOff, animOff }] = [on, off];
+            const [{ switchBtnOn, calendarOn }, { switchBtnOff, calendarOff }] = [on, off];
             classAction(switchBtnOn, 'add', 'switch-on');
             classAction(switchBtnOff, 'remove', 'switch-on');
             setStyle(calendarOn, 'display', 'flex');
@@ -56,23 +56,19 @@ const switchController = ((UICtrl) => {
             on: {
                 switchBtnOn: DOM.monthSwitch,
                 calendarOn: DOM.monthCalendar,
-                animOn: DOM.mCalBox,
             },
             off: {
                 switchBtnOff: DOM.yearSwitch,
                 calendarOff: DOM.yearCalendar,
-                animOff: DOM.myCalBox,
             },
         } : {
             on: {
                 switchBtnOn: DOM.yearSwitch,
                 calendarOn: DOM.yearCalendar,
-                animOn: DOM.myCalBox,
             },
             off: {
                 switchBtnOff: DOM.monthSwitch,
                 calendarOff: DOM.monthCalendar,
-                animOff: DOM.mCalBox,
             },
         });
     };
