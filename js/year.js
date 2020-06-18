@@ -154,9 +154,7 @@ const yearUIController = (() => {
                 classAction(`#moy-${currMonth} #wday-${currWeek}`, 'add', 'curr-wday');
             }
             setTimeout(() => {
-                [...selectorAll(DOMStrings.singleMonth)].map((e) => {
-                    e.classList.add('animate');
-                });
+                [...selectorAll(DOMStrings.singleMonth)].map((e) => e.classList.add('animate'));
             }, 1);
         },
 
