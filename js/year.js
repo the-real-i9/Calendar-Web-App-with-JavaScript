@@ -1,13 +1,13 @@
 /* eslint-disable prefer-const */
 const yearCalController = (() => {
     const d = new Date();
-    const calendarInfo = ({ whichYear = d.getFullYear(), whichMonth = d.getMonth() }) => {
-        d.setFullYear(whichYear, whichMonth);
+    const calendarInfo = ({ year = d.getFullYear(), monthNum = d.getMonth(), yearsCount = 0 }) => {
+        d.setFullYear(year + yearsCount, monthNum);
 
         const drefFrom = new Date(d.getFullYear(), d.getMonth());
         const drefTo = new Date(d.getFullYear(), d.getMonth() + 1);
 
-        const year = d.getFullYear();
+        const yearSet = d.getFullYear().toString();
 
         const month = d.toLocaleDateString('en-US', { month: 'long' });
 
@@ -20,12 +20,12 @@ const yearCalController = (() => {
         const currYear = new Date().getFullYear().toString();
 
         return {
-            year, month, daysInMonth, weekStart, weekEnd, currDate, currWeek, currMonth, currYear,
+            yearSet, month, daysInMonth, weekStart, weekEnd, currDate, currWeek, currMonth, currYear,
         };
     };
 
     return {
-        calendarInfo: (whichYear, whichMonth) => calendarInfo({ whichYear, whichMonth }),
+        calendarInfo: ({ year, monthNum, yearsCount }) => calendarInfo({ year, monthNum, yearsCount }),
     };
 })();
 
@@ -64,13 +64,17 @@ const yearUIController = (() => {
         selector(elem).insertAdjacentHTML(where, html);
     };
 
+    const setProp = (elem, prop, value) => {
+        selector(elem)[prop] = value;
+    };
+
     return {
         preset({
-            currDate, currWeek, currMonth, currYear,
-        }) {
+            yearSet, currDate, currWeek, currMonth, currYear,
+        }, serveMonthFn) {
             let monthCountStart = 0;
             const monthCountEnd = 11;
-            const [fh, sh] = [currYear.slice(0, 2), currYear.slice(2, currYear.length)];
+            const [fh, sh] = [yearSet.slice(0, 2), yearSet.slice(2, yearSet.length)];
             insertHtml(DOMStrings.nextYearBtn, 'beforebegin', `<div class="year">${fh}<span id='relv'>${sh}</span></div>`);
 
              const serveMonth = ({
@@ -124,13 +128,24 @@ const yearUIController = (() => {
 
                 // Increment to and call the function agin to serve subsequent months
                 monthCountStart++;
-                serveMonth(yearAppController.serveMonth({ monthNum: monthCountStart }));
+                serveMonth(serveMonthFn({ monthNum: monthCountStart, yearsCount: 0 }));
             };
-            serveMonth(yearAppController.serveMonth({ monthNum: monthCountStart }));
+            serveMonth(serveMonthFn({ monthNum: monthCountStart, yearsCount: 0 }));
 
-            classAction(`#moy-${currMonth} #date-${currDate}`, 'add', 'curr-date');
-            classAction(`#moy-${currMonth} #wday-${currWeek}`, 'add', 'curr-wday');
+            if (yearSet === currYear) {
+                classAction(`#moy-${currMonth} #date-${currDate}`, 'add', 'curr-date');
+                classAction(`#moy-${currMonth} #wday-${currWeek}`, 'add', 'curr-wday');
+            }
+        },
 
+        navigateYear({
+            yearSet, currDate, currWeek, currMonth, currYear,
+        }, serveMonthFn) {
+            setProp('.year', 'outerHTML', '');
+            setProp(DOMStrings.allMonthsCont, 'innerHTML', '');
+            this.preset({
+                yearSet, currDate, currWeek, currMonth, currYear,
+            }, serveMonthFn);
         },
 
         getDOMStrings: () => DOMStrings,
@@ -141,18 +156,34 @@ const yearUIController = (() => {
 const yearAppController = ((ycCtrl, UICtrl) => {
     const DOM = UICtrl.getDOMStrings();
     const select = (elem) => UICtrl.getSelector(elem);
+    const event = (elem, ev, value) => select(elem).addEventListener(ev, value);
     const setupEventListeners = () => {
-
+        event(DOM.nextYearBtn, 'click', navigateYear);
+        event(DOM.prevYearBtn, 'click', navigateYear);
     };
 
-    const serveMonth = ({ year, monthNum }) => ycCtrl.calendarInfo(year, monthNum);
+    const serveMonth = ({ year, monthNum, yearsCount }) => ycCtrl.calendarInfo({ year, monthNum, yearsCount });
+
+    const navigateYear = (ev) => {
+        // eslint-disable-next-line no-unused-expressions
+        if (ev.target.id === 'next-year') {
+            UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 1 }), serveMonth);
+            event(DOM.prevYearBtn, 'click', navigateYear);
+        } else if (ev.target.id === 'prev-year') {
+            UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: -1 }), serveMonth);
+            event(DOM.nextYearBtn, 'click', navigateYear);
+        }
+
+        // event(DOM.nextYearBtn, 'click', navigateYear);
+        // event(DOM.prevYearBtn, 'click', navigateYear);
+        console.log('Clicked');
+    };
 
     return {
         init() {
-            UICtrl.preset(ycCtrl.calendarInfo());
+            UICtrl.preset(ycCtrl.calendarInfo({}), serveMonth);
             setupEventListeners();
         },
-        serveMonth: ({ year, monthNum }) => serveMonth({ year, monthNum }),
     };
 })(yearCalController, yearUIController);
 yearAppController.init();
