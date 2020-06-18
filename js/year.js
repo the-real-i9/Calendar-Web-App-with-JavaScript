@@ -54,6 +54,7 @@ const yearUIController = (() => {
         nextYearBtn: '#next-year',
         prevYearBtn: '#prev-year',
         year: '.year',
+        yearCalendar: '.year-calendar',
     };
 
     const selector = (elem) => document.querySelector(elem);
@@ -61,9 +62,6 @@ const yearUIController = (() => {
 
     const classAction = (el, action, classValue) => {
         selector(el).classList[action](classValue);
-    };
-    const setStyle = (el, prop, value) => {
-        selector(el).style[prop] = value;
     };
 
     const insertHtml = (elem, where, html) => {
@@ -183,16 +181,26 @@ const yearAppController = ((ycCtrl, UICtrl) => {
     const setupEventListeners = () => {
         event(DOM.nextYearBtn, 'click', navigateYear);
         event(DOM.prevYearBtn, 'click', navigateYear);
+        document.addEventListener('keyup', navigateYear);
     };
 
     const serveMonth = ({ monthNum }) => ycCtrl.monthServer({ monthNum });
 
     const navigateYear = (ev) => {
-        if (ev.target.id === 'prev-year' && `${select(DOM.year).innerHTML}`.includes('19') && `${select(DOM.year).innerHTML}`.includes('70')) return;
-        // eslint-disable-next-line no-unused-expressions
-        (ev.target.id === 'next-year'
-        ? UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'next' }), serveMonth)
-        : UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'prev' }), serveMonth));
+        if (ev.type === 'click') {
+            if (ev.target.id === 'prev-year' && `${select(DOM.year).innerHTML}`.includes('19') && `${select(DOM.year).innerHTML}`.includes('70')) return;
+            // eslint-disable-next-line no-unused-expressions
+            (ev.target.id === 'next-year'
+            ? UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'next' }), serveMonth)
+            : UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'prev' }), serveMonth));
+        } else if (ev.type === 'keyup') {
+            if (select(DOM.yearCalendar).style.display === 'none') return;
+            if (ev.keyCode === 37 && `${select(DOM.year).innerHTML}`.includes('19') && `${select(DOM.year).innerHTML}`.includes('70')) return;
+            // eslint-disable-next-line no-unused-expressions
+            (ev.keyCode === 39
+            ? UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'next' }), serveMonth)
+            : (ev.keyCode === 37 && UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'prev' }), serveMonth)));
+        }
     };
 
     return {
@@ -200,7 +208,6 @@ const yearAppController = ((ycCtrl, UICtrl) => {
             UICtrl.preset(ycCtrl.calendarInfo({}), serveMonth);
             setupEventListeners();
         },
-        // serveMonth: ({ monthNum }) => serveMonth({ monthNum }),
     };
 })(yearCalController, yearUIController);
 yearAppController.init();
