@@ -4,8 +4,6 @@ const switchUIController = (() => {
         yearSwitch: '#year-switch',
         monthCalendar: '.month-calendar',
         yearCalendar: '.year-calendar',
-        mCalBox: '.month-box',
-        myCalBox: '.month-of-year',
     };
 
     const selector = (elem) => document.querySelector(elem);
@@ -22,7 +20,6 @@ const switchUIController = (() => {
             classAction(DOMStrings.yearSwitch, 'add', 'switch-on');
             setStyle(DOMStrings.yearCalendar, 'display', 'flex');
             setStyle(DOMStrings.monthCalendar, 'display', 'none');
-            // setStyle(DOMStrings.myCalBox, 'transform', 'translateY(0)');
         },
 
         switchCal({ on, off }) {
@@ -31,8 +28,6 @@ const switchUIController = (() => {
             classAction(switchBtnOff, 'remove', 'switch-on');
             setStyle(calendarOn, 'display', 'flex');
             setStyle(calendarOff, 'display', 'none');
-            // setStyle(animOn, 'transform', 'translateY(0)');
-            // setStyle(animOff, 'transform', 'translateY(20px)');
         },
 
         getDOMStrings: () => DOMStrings,

@@ -20,6 +20,7 @@ body {
     background: $white;
     position: fixed;
     top: 0;
+    z-index: 1;
 
     .intro-logo {
         margin-left: 6%;

@@ -39,7 +39,10 @@
             // height: 180px;
             border-radius: 25px;
             box-shadow: 0 0 6px rgba($black, $alpha: 0.16);
-            transition: transform .5s 1s ease-in;
+            transform: translateY(3em);
+            opacity: 0;
+            transition: transform 1s ease-out,
+                        opacity 1s ease-out;
 
             .month-name {
                 text-align: center;
@@ -80,6 +83,12 @@
             }
         }
 
+        @for $num from 1 through 11 {
+            #moy-#{$num} {
+                transition-delay: 0.1s * $num;
+            }
+        }
+
     }
 
 }
@@ -91,4 +100,10 @@
 
 .curr-wday {
     color: $primColor !important;
+}
+
+
+.animate {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }

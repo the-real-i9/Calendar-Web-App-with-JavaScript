@@ -1,47 +1,63 @@
 /* eslint-disable prefer-const */
 const yearCalController = (() => {
     const d = new Date();
-    const calendarInfo = ({ year = d.getFullYear(), monthNum = d.getMonth(), yearsCount = 0 }) => {
-        d.setFullYear(year + yearsCount, monthNum);
-
-        const drefFrom = new Date(d.getFullYear(), d.getMonth());
-        const drefTo = new Date(d.getFullYear(), d.getMonth() + 1);
+    const calendarInfo = ({ year = d.getFullYear(), yearsCount = 0 }) => {
+        d.setFullYear(year + yearsCount);
 
         const yearSet = d.getFullYear().toString();
 
-        const month = d.toLocaleDateString('en-US', { month: 'long' });
+        const currD = new Date();
+        const currDate = currD.getDate();
+        const currWeek = currD.getDay();
+        const currMonth = currD.getMonth();
+        const currYear = currD.getFullYear().toString();
+
+        return {
+            yearSet, currDate, currWeek, currMonth, currYear,
+        };
+    };
+
+    const monthServer = ({ monthNum }) => {
+        const dm = new Date(d.getFullYear(), monthNum);
+
+        const drefFrom = new Date(dm.getFullYear(), dm.getMonth());
+        const drefTo = new Date(dm.getFullYear(), dm.getMonth() + 1);
+
+        const month = dm.toLocaleDateString('en-US', { month: 'long' });
 
         const daysInMonth = (drefTo - drefFrom) / 1000 / 60 / 60 / 24;
         const weekStart = drefFrom.getDay();
         const weekEnd = 7 - drefTo.getDay();
-        const currDate = new Date().getDate();
-        const currWeek = new Date().getDay();
-        const currMonth = new Date().getMonth();
-        const currYear = new Date().getFullYear().toString();
 
         return {
-            yearSet, month, daysInMonth, weekStart, weekEnd, currDate, currWeek, currMonth, currYear,
+            month, daysInMonth, weekStart, weekEnd,
         };
     };
 
     return {
-        calendarInfo: ({ year, monthNum, yearsCount }) => calendarInfo({ year, monthNum, yearsCount }),
+        calendarInfo: ({ year, yearsCount }) => (yearsCount === 'next'
+        ? calendarInfo({ year, yearsCount: 1 }) : yearsCount === 'prev'
+        ? calendarInfo({ year, yearsCount: -1 }) : calendarInfo({ year, yearsCount })),
+
+        monthServer: ({ monthNum }) => monthServer({ monthNum }),
     };
 })();
 
 const yearUIController = (() => {
     const DOMStrings = {
         allMonthsCont: '.months-of-the-year',
-        oneMonth: '.month-of-year',
+        singleMonth: '.month-of-year',
         monthName: '.month-name',
         weekDaysCont: '.weekdays',
         weekDays: '.wday',
         datesCont: '.dates',
         nextYearBtn: '#next-year',
         prevYearBtn: '#prev-year',
+        year: '.year',
     };
 
     const selector = (elem) => document.querySelector(elem);
+    const selectorAll = (elem) => document.querySelectorAll(elem);
 
     const classAction = (el, action, classValue) => {
         selector(el).classList[action](classValue);
@@ -77,7 +93,7 @@ const yearUIController = (() => {
             const [fh, sh] = [yearSet.slice(0, 2), yearSet.slice(2, yearSet.length)];
             insertHtml(DOMStrings.nextYearBtn, 'beforebegin', `<div class="year">${fh}<span id='relv'>${sh}</span></div>`);
 
-             const serveMonth = ({
+            const serveMonth = ({
                 month, daysInMonth, weekStart, weekEnd,
             }) => {
                 if (monthCountStart > monthCountEnd) return;
@@ -126,22 +142,28 @@ const yearUIController = (() => {
                 const offsetEnd = offset;
                 offsetEnd(`#dates-${monthCountStart}`, weekEnd, countOffsetEnd, noOffsetEnd);
 
+
                 // Increment to and call the function agin to serve subsequent months
                 monthCountStart++;
-                serveMonth(serveMonthFn({ monthNum: monthCountStart, yearsCount: 0 }));
+                serveMonth(serveMonthFn({ monthNum: monthCountStart }));
             };
-            serveMonth(serveMonthFn({ monthNum: monthCountStart, yearsCount: 0 }));
+            serveMonth(serveMonthFn({ monthNum: monthCountStart }));
 
             if (yearSet === currYear) {
                 classAction(`#moy-${currMonth} #date-${currDate}`, 'add', 'curr-date');
                 classAction(`#moy-${currMonth} #wday-${currWeek}`, 'add', 'curr-wday');
             }
+            setTimeout(() => {
+                [...selectorAll(DOMStrings.singleMonth)].map((e) => {
+                    e.classList.add('animate');
+                });
+            }, 1);
         },
 
         navigateYear({
             yearSet, currDate, currWeek, currMonth, currYear,
         }, serveMonthFn) {
-            setProp('.year', 'outerHTML', '');
+            setProp(DOMStrings.year, 'outerHTML', '');
             setProp(DOMStrings.allMonthsCont, 'innerHTML', '');
             this.preset({
                 yearSet, currDate, currWeek, currMonth, currYear,
@@ -150,33 +172,28 @@ const yearUIController = (() => {
 
         getDOMStrings: () => DOMStrings,
         getSelector: (elem) => selector(elem),
+        getSelectorAll: (elem) => selectorAll(elem),
     };
 })();
 
 const yearAppController = ((ycCtrl, UICtrl) => {
     const DOM = UICtrl.getDOMStrings();
     const select = (elem) => UICtrl.getSelector(elem);
+    const selectAll = (elem) => UICtrl.getSelectorAll(elem);
     const event = (elem, ev, value) => select(elem).addEventListener(ev, value);
     const setupEventListeners = () => {
         event(DOM.nextYearBtn, 'click', navigateYear);
         event(DOM.prevYearBtn, 'click', navigateYear);
     };
 
-    const serveMonth = ({ year, monthNum, yearsCount }) => ycCtrl.calendarInfo({ year, monthNum, yearsCount });
+    const serveMonth = ({ monthNum }) => ycCtrl.monthServer({ monthNum });
 
     const navigateYear = (ev) => {
+        if (ev.target.id === 'prev-year' && `${select(DOM.year).innerHTML}`.includes('19') && `${select(DOM.year).innerHTML}`.includes('70')) return;
         // eslint-disable-next-line no-unused-expressions
-        if (ev.target.id === 'next-year') {
-            UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 1 }), serveMonth);
-            event(DOM.prevYearBtn, 'click', navigateYear);
-        } else if (ev.target.id === 'prev-year') {
-            UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: -1 }), serveMonth);
-            event(DOM.nextYearBtn, 'click', navigateYear);
-        }
-
-        // event(DOM.nextYearBtn, 'click', navigateYear);
-        // event(DOM.prevYearBtn, 'click', navigateYear);
-        console.log('Clicked');
+        (ev.target.id === 'next-year'
+        ? UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'next' }), serveMonth)
+        : UICtrl.navigateYear(ycCtrl.calendarInfo({ yearsCount: 'prev' }), serveMonth));
     };
 
     return {
@@ -184,6 +201,7 @@ const yearAppController = ((ycCtrl, UICtrl) => {
             UICtrl.preset(ycCtrl.calendarInfo({}), serveMonth);
             setupEventListeners();
         },
+        // serveMonth: ({ monthNum }) => serveMonth({ monthNum }),
     };
 })(yearCalController, yearUIController);
 yearAppController.init();

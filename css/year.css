@@ -71,10 +71,13 @@
   border-radius: 25px;
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
           box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
-  -webkit-transition: -webkit-transform .5s 1s ease-in;
-  transition: -webkit-transform .5s 1s ease-in;
-  transition: transform .5s 1s ease-in;
-  transition: transform .5s 1s ease-in, -webkit-transform .5s 1s ease-in;
+  -webkit-transform: translateY(3em);
+          transform: translateY(3em);
+  opacity: 0;
+  -webkit-transition: opacity 1s ease-out, -webkit-transform 1s ease-out;
+  transition: opacity 1s ease-out, -webkit-transform 1s ease-out;
+  transition: transform 1s ease-out, opacity 1s ease-out;
+  transition: transform 1s ease-out, opacity 1s ease-out, -webkit-transform 1s ease-out;
 }
 
 .year-calendar .months-of-the-year .month-of-year .month-name {
@@ -131,6 +134,61 @@
   font-size: 15px;
 }
 
+.year-calendar .months-of-the-year #moy-1 {
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+
+.year-calendar .months-of-the-year #moy-2 {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+.year-calendar .months-of-the-year #moy-3 {
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+
+.year-calendar .months-of-the-year #moy-4 {
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+}
+
+.year-calendar .months-of-the-year #moy-5 {
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.year-calendar .months-of-the-year #moy-6 {
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+}
+
+.year-calendar .months-of-the-year #moy-7 {
+  -webkit-transition-delay: 0.7s;
+          transition-delay: 0.7s;
+}
+
+.year-calendar .months-of-the-year #moy-8 {
+  -webkit-transition-delay: 0.8s;
+          transition-delay: 0.8s;
+}
+
+.year-calendar .months-of-the-year #moy-9 {
+  -webkit-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+}
+
+.year-calendar .months-of-the-year #moy-10 {
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
+}
+
+.year-calendar .months-of-the-year #moy-11 {
+  -webkit-transition-delay: 1.1s;
+          transition-delay: 1.1s;
+}
+
 .curr-date {
   background: #1a73e8;
   color: #fff;
@@ -138,5 +196,11 @@
 
 .curr-wday {
   color: #1a73e8 !important;
+}
+
+.animate {
+  opacity: 1 !important;
+  -webkit-transform: translateY(0) !important;
+          transform: translateY(0) !important;
 }
 /*# sourceMappingURL=year.css.map */
