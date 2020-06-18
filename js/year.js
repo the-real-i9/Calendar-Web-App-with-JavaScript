@@ -66,18 +66,18 @@ const yearUIController = (() => {
         selector(el).style[prop] = value;
     };
 
+    const insertHtml = (elem, where, html) => {
+        selector(elem).insertAdjacentHTML(where, html);
+    };
+
     const htmlEmpty = '<span class="empty"></span>';
 
     const offset = (elem, week, count, num) => {
         if (week === num) return;
-        selector(elem).insertAdjacentHTML('beforeend', htmlEmpty);
+        insertHtml(elem, 'beforeend', htmlEmpty);
         count++;
         if (count === week) return;
         offset(elem, week, count, num);
-    };
-
-    const insertHtml = (elem, where, html) => {
-        selector(elem).insertAdjacentHTML(where, html);
     };
 
     const setProp = (elem, prop, value) => {
@@ -93,6 +93,7 @@ const yearUIController = (() => {
             const [fh, sh] = [yearSet.slice(0, 2), yearSet.slice(2, yearSet.length)];
             insertHtml(DOMStrings.nextYearBtn, 'beforebegin', `<div class="year">${fh}<span id='relv'>${sh}</span></div>`);
 
+            // Power House
             const serveMonth = ({
                 month, daysInMonth, weekStart, weekEnd,
             }) => {
@@ -115,7 +116,7 @@ const yearUIController = (() => {
 
                 // Supply the weeks into weeks container
                 const supplyWeeks = (count, compareTo, elem) => {
-                    selector(elem).insertAdjacentHTML('beforeend', `<span class='wday' id="wday-${count}">${weekText[count]}</span>`);
+                    insertHtml(elem, 'beforeend', `<span class='wday' id="wday-${count}">${weekText[count]}</span>`);
                     count++;
                     if (count > compareTo) return;
                     supplyWeeks(count, compareTo, elem);
@@ -131,7 +132,7 @@ const yearUIController = (() => {
 
                 // supply the dates for the month
                 const supplyDates = (count, compareTo, elem) => {
-                    selector(elem).insertAdjacentHTML('beforeend', `<span class="date" id="date-${count}">${count}</span>`);
+                    insertHtml(elem, 'beforeend', `<span class="date" id="date-${count}">${count}</span>`);
                     count++;
                     if (count > compareTo) return;
                     supplyDates(count, compareTo, elem);
