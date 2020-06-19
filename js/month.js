@@ -22,7 +22,6 @@ const monthCalController = (() => {
             year: 'numeric',
         });
         const currTime = currD.toLocaleTimeString();
-        // console.log(year, fullDate, monthYear, daysInMonth, weekStart, weekEnd, date, currWeek);
 
 
         return {
@@ -48,7 +47,6 @@ const monthUIController = (() => {
     };
 
     const selector = (elem) => document.querySelector(elem);
-    const selectorAll = (elem) => document.querySelectorAll(elem);
 
     const classAction = (el, action, classValue) => {
         selector(el).classList[action](classValue);
@@ -127,14 +125,12 @@ const monthUIController = (() => {
 
         getDOMStrings: () => DOMStrings,
         getSelector: (elem) => selector(elem),
-        getSelectorAll: (elem) => selectorAll(elem),
     };
 })();
 
 const monthAppController = ((mcCtrl, UICtrl) => {
     const DOM = UICtrl.getDOMStrings();
     const select = (elem) => UICtrl.getSelector(elem);
-    const selectAll = (elem) => UICtrl.getSelectorAll(elem);
     const event = (elem, ev, value) => select(elem).addEventListener(ev, value);
     const setupEventListeners = () => {
         event(DOM.nextMonthBtn, 'click', updateMonth);
