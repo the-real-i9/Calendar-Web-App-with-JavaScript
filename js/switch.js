@@ -17,9 +17,9 @@ const switchUIController = (() => {
 
     return {
         preset() {
-            classAction(DOMStrings.yearSwitch, 'add', 'switch-on');
-            setStyle(DOMStrings.yearCalendar, 'display', 'flex');
-            setStyle(DOMStrings.monthCalendar, 'display', 'none');
+            classAction(DOMStrings.monthSwitch, 'add', 'switch-on');
+            setStyle(DOMStrings.yearCalendar, 'display', 'none');
+            setStyle(DOMStrings.monthCalendar, 'display', 'flex');
         },
 
         switchCal({ on, off }) {
