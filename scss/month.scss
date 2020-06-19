@@ -6,7 +6,7 @@
     @include flex(flex-start, center, column);
     display: none;
     margin-top: 60px;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
 
     .month-nav {
         margin: 5px 0;
@@ -29,9 +29,9 @@
     }
 
     .month-cont {
-        width: 92%;
+        width: 75%;
         box-shadow: 0 0 6px rgba($black, $alpha: 0.16);
-        border-radius: 70px;
+        border-radius: 50px;
         overflow: hidden;
         transition: transform .5s 1s ease-in;
 
@@ -45,9 +45,10 @@
                 @include flex(center);
                 margin: 0 auto;
                 border: 2px solid $primColor;
-                width: 145px;
+                width: 115px;
                 border-radius: 35px;
                 font-weight: weight(normal);
+                font-size: 17px;
             }
         }
 
@@ -65,9 +66,9 @@
 
                 span {
                     margin: 0 auto;
-                    height: 75px;
-                    width: 145px;
-                    font-size: 20px;
+                    height: 70px;
+                    width: 115px;
+                    font-size: 17px;
                     padding: 5px 0 0 13px;
                 }
                 .mdate {
