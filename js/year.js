@@ -83,7 +83,7 @@ const yearUIController = (() => {
     };
 
     return {
-        preset({
+        yearCalendar({
             yearSet, currDate, currWeek, currMonth, currYear,
         }, serveMonthFn) {
             let monthCountStart = 0;
@@ -162,7 +162,7 @@ const yearUIController = (() => {
         }, serveMonthFn) {
             setProp(DOMStrings.year, 'outerHTML', '');
             setProp(DOMStrings.allMonthsCont, 'innerHTML', '');
-            this.preset({
+            this.yearCalendar({
                 yearSet, currDate, currWeek, currMonth, currYear,
             }, serveMonthFn);
         },
@@ -205,7 +205,7 @@ const yearAppController = ((ycCtrl, UICtrl) => {
 
     return {
         init() {
-            UICtrl.preset(ycCtrl.calendarInfo({}), serveMonth);
+            UICtrl.yearCalendar(ycCtrl.calendarInfo({}), serveMonth);
             setupEventListeners();
         },
     };

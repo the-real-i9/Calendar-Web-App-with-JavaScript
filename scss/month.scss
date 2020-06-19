@@ -6,10 +6,11 @@
     @include flex(flex-start, center, column);
     display: none;
     margin-top: 60px;
+    margin-bottom: 30px;
 
     .month-nav {
         margin: 5px 0;
-        width: 300px;
+        // width: 300px;
         @include flex(space-between, center);
 
         .month-year {
@@ -20,6 +21,7 @@
             #relv {
                 color: $primColor;
             }
+            padding: 0 35px;
         }
         img {
             width: 35px;
