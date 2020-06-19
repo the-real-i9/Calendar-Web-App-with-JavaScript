@@ -15,6 +15,7 @@
 * Default Parameters.
 * Functions taking functions as arguments.
 * Stand-alone functions executing multiple actions to the UI, the likes of `setStyle(), classAction(), insertHTML(), setProp()` to hounor **Abstraction**.
+* You can navigate calendar with keyboard or button clicks.
 * And More...
 
 *I'm still gonna implement Holidays & Event Reminders in the App. I decided I'm gonna release it on my Repo at this stage. I'll keep you posted. Also **I need a better design, any suggestion? Feel free to raise issues.***

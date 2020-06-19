@@ -32,7 +32,7 @@ const monthCalController = (() => {
     return {
         currentMonthCal: () => calenderInfo({}),
 
-        updateMonth: ({ nextOrPrev }) => (nextOrPrev === 'next' ? calenderInfo({ nextOrPrev: 1 }) : calenderInfo({ nextOrPrev: -1 })),
+        navigate: ({ nextOrPrev }) => (nextOrPrev === 'next' ? calenderInfo({ nextOrPrev: 1 }) : calenderInfo({ nextOrPrev: -1 })),
     };
 })();
 
@@ -113,7 +113,7 @@ const monthUIController = (() => {
             }
         },
 
-        updateMonth({
+        navigate({
             monthYear, daysInMonth, weekStart, weekEnd, currDate, currWeek, currMonthYear, currTime,
         }) {
             setProp(DOMStrings.monthYear, 'outerHTML', '');
@@ -133,25 +133,25 @@ const monthAppController = ((mcCtrl, UICtrl) => {
     const select = (elem) => UICtrl.getSelector(elem);
     const event = (elem, ev, value) => select(elem).addEventListener(ev, value);
     const setupEventListeners = () => {
-        event(DOM.nextMonthBtn, 'click', updateMonth);
-        event(DOM.prevMonthBtn, 'click', updateMonth);
-        document.addEventListener('keydown', updateMonth);
+        event(DOM.nextMonthBtn, 'click', navigate);
+        event(DOM.prevMonthBtn, 'click', navigate);
+        document.addEventListener('keydown', navigate);
     };
 
-    const updateMonth = (ev) => {
+    const navigate = (ev) => {
         if (ev.type === 'click') {
             if (ev.target.id === 'prev-month' && `${select(DOM.monthYear).innerHTML}`.includes('January') && `${select(DOM.monthYear).innerHTML}`.includes('19') && `${select(DOM.monthYear).innerHTML}`.includes('70')) return;
             // eslint-disable-next-line no-unused-expressions
             (ev.target.id === 'next-month'
-            ? UICtrl.updateMonth(mcCtrl.updateMonth({ nextOrPrev: 'next' }))
-            : UICtrl.updateMonth(mcCtrl.updateMonth({ nextOrPrev: 'prev' })));
+            ? UICtrl.navigate(mcCtrl.navigate({ nextOrPrev: 'next' }))
+            : UICtrl.navigate(mcCtrl.navigate({ nextOrPrev: 'prev' })));
         } else if (ev.type === 'keydown') {
             if (select(DOM.monthCalendar).style.display === 'none') return;
             if (ev.keyCode === 37 && `${select(DOM.monthYear).innerHTML}`.includes('January') && `${select(DOM.monthYear).innerHTML}`.includes('19') && `${select(DOM.monthYear).innerHTML}`.includes('70')) return;
             // eslint-disable-next-line no-unused-expressions
             (ev.keyCode === 39
-            ? UICtrl.updateMonth(mcCtrl.updateMonth({ nextOrPrev: 'next' }))
-            : (ev.keyCode === 37 && UICtrl.updateMonth(mcCtrl.updateMonth({ nextOrPrev: 'prev' }))));
+            ? UICtrl.navigate(mcCtrl.navigate({ nextOrPrev: 'next' }))
+            : (ev.keyCode === 37 && UICtrl.navigate(mcCtrl.navigate({ nextOrPrev: 'prev' }))));
         }
     };
 
